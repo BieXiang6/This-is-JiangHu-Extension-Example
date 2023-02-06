@@ -50,15 +50,12 @@ class Game{
 1. app发送到该拓展内，会被自动分配到各个静态成员变量中，在制作拓展时直接静态引用即可，如：
 ```
 var out = Game.outText;
-```
 2. 拓展向app发送消息需要静态调用SenMsg()方法，如:
 ```
 Game.SendMsg("look","cmd");
-```
     - 即为向app发送了类型为 **cmd** 的 "look" 消息，意思是让app发送look指令。如需一次执行多个指令，指令间以换行符'\n'分割，指令的**开头与结尾不得存在换行符**,如:
 ```
 Game.SendMsg("look\njump\nhaha\nwest","cmd");
-```
     - 此方法的第二个参数为消息类型，另外两种类型分别为 "variablesControl" 和 "gameControl"。
     - variablesControl:变量控制，参数一为固定三种:
 		- "ClearOut":清空outText,将历史记录的outText清空;
