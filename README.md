@@ -55,11 +55,11 @@ var out = Game.outText;
 ```javascript
 Game.SendMsg("look","cmd");
 ```
-    - 即为向app发送了类型为 **cmd** 的 "look" 消息，意思是让app发送look指令。如需一次执行多个指令，指令间以换行符'\n'分割，指令的**开头与结尾不得存在换行符**,如:
+- 即为向app发送了类型为 **cmd** 的 "look" 消息，意思是让app发送look指令。如需一次执行多个指令，指令间以换行符'\n'分割，指令的**开头与结尾不得存在换行符**,如:
 ```javascript
 Game.SendMsg("look\njump\nhaha\nwest","cmd");
 ```
-    - 此方法的第二个参数为消息类型，另外两种类型分别为 "variablesControl" 和 "gameControl"。
+- 此方法的第二个参数为消息类型，另外两种类型分别为 "variablesControl" 和 "gameControl"。
     - variablesControl:变量控制，参数一为固定三种:
 		- "ClearOut":清空outText,将历史记录的outText清空;
 		- "ClearChat":清空chatText，清除所有记录的聊天消息;
