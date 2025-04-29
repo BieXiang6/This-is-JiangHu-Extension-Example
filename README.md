@@ -19,10 +19,10 @@
 	- **icon** : 该拓展插件的图标的索引，以包体为根目录的html主页相对位置，用于显示在app的已开启拓展列表内;
 	- **author** : 该拓展插件的作者名，或者曾经修改过该插件者的署名，用于显示在app的加载拓展列表内;
 	- **version** : 该插件的版本号，用于显示在app的加载拓展列表内;
-	- **HtmlName**  :该插件的网页视图的索引，以包体为根目录的html主页相对位置;
-	- **HtmlPosition** : 该插件在app中的显示位置，包含四个0~1之间的浮点型小数，之间用英文逗号隔开，按顺序表示上下、左右边距占屏幕纵横的百分比;
+	- **index**  :该插件的网页视图的索引，以包体为根目录的html主页相对位置;
+	- **describtion** : 该插件的简单描述;
 	- package:该插件与其他插件重名后更改的名称，可不填。
-- **注意**:在填写所有索引时，包括 **icon** 和 **HtmlName** 以及**你在编写html文件时的索引**，均不应以"/"或"\\"开头，因为这样会导航到安卓系统的根目录而不是我们所需要的相对目录。
+- **注意**:在填写所有索引时，包括 **icon** 和 **index** 以及**你在编写html文件时的索引**，均不应以"/"或"\\"开头，因为这样会导航到安卓系统的根目录而不是我们所需要的相对目录。
 
 ### 拓展插件与app之间的交互
 - 当mud服务器向app发送消息，app会自动将消息分割为不同的部分，并向所有打开的拓展插件发送。在你的拓展插件中加入 **Game.js** 文件并且在 html 文件的 head 标签中所有脚本最上方引用。**Game.js** 文件中封装了一个简易的与app通信的类。以下是其结构:
@@ -41,7 +41,7 @@ class Game{
     static stateText;
 
     //向服务器发送指令，指令间用\n分割
-    static SendMsg(msg,way="cmd");
+    static SendMsg(msg,way="cmds");
 
     //延时函数，使用时必须在sleep前加上await关键字，在sleep所在函数前加上async,注意异步
     static sleep(delay);
@@ -53,11 +53,11 @@ var out = Game.outText;
 ```
 2. 拓展向app发送消息需要静态调用SenMsg()方法，如:
 ```javascript
-Game.SendMsg("look","cmd");
+Game.SendMsg("look","cmds");
 ```
 - 即为向app发送了类型为 **cmd** 的 "look" 消息，意思是让app发送look指令。如需一次执行多个指令，指令间以换行符'\n'分割，指令的**开头与结尾不得存在换行符**,如:
 ```javascript
-Game.SendMsg("look\njump\nhaha\nwest","cmd");
+Game.SendMsg("look\njump\nhaha\nwest","cmds");
 ```
 - 此方法的第二个参数为消息类型，另外两种类型分别为 "variablesControl" 和 "gameControl"。
     - variablesControl:变量控制，参数一为固定三种:
